@@ -54,6 +54,15 @@ in {
         client to be modded, as only PC versions can run mods.
       '';
     };
+    
+    noGraphics = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = lib.mdDoc ''
+        Whether to run with graphics or not.
+        Enable this if you're headless with no GPU.
+      '';
+    };
 
     openFirewall = lib.mkOption {
       type = lib.types.bool;
@@ -293,6 +302,7 @@ in {
             lib.strings.concatStringsSep " " ([
                 "${valheimServerPkg}/bin/valheim-server"
                 "-name \"${cfg.serverName}\""
+                "-batchmode"
               ]
               ++ (lib.lists.optional (cfg.worldName != null) "-world \"${cfg.worldName}\"")
               ++ [
@@ -301,7 +311,8 @@ in {
                 "-public ${if cfg.public then "1" else "0"}"
               ]
               ++ (lib.lists.optional cfg.crossplay "-crossplay")
-              ++ (lib.lists.optional (cfg.preset != null) "-preset \"${cfg.preset}\""));
+              ++ (lib.lists.optional (cfg.preset != null) "-preset \"${cfg.preset}\"")
+              ++ (lib.lists.optional cfg.noGraphics "-nographics"));
         };
       };
     };
