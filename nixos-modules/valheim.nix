@@ -92,13 +92,25 @@ in {
     };
 
     password = lib.mkOption {
-      type = lib.types.str;
-      default = "";
+      type = with lib.types; nullOr str;
+      default = null;
       description = lib.mdDoc ''
         The server password.
 
-        This can only be passed as a commandline argument to the server, so it
+        This is passed as a commandline argument to the server, so it
         can be viewed by any user on the system able to list processes.
+      '';
+    };
+
+    passwordEnvFile = lib.mkOption {
+      type = with lib.types; nullOr path;
+      default = null;
+      example = "/var/lib/valheim/password.env";
+      description = lib.mdDoc ''
+        Path to a file containing the server password in env format.
+
+        Example:
+        VH_SERVER_PASSWORD='myp@$$'
       '';
     };
 
@@ -193,6 +205,9 @@ in {
 
     systemd.services = let
       installDir = "${stateDir}/valheim-server-modded";
+      # If passwordEnvFile is provided then use environment variable, else insert password in unit file directly.
+      # Assertions ensure that other cases are not possible.
+      serverPassword = if cfg.passwordEnvFile != null then "\"\${VH_SERVER_PASSWORD}\"" else cfg.password;
     in {
       valheim = {
         description = "Valheim dedicated server";
@@ -293,6 +308,7 @@ in {
         in {
           Type = "exec";
           User = "valheim";
+          EnvironmentFile = lib.mkIf (cfg.passwordEnvFile != null) cfg.passwordEnvFile;
           ExecStart = let
             valheimServerPkg =
               if (cfg.bepinexMods != [])
@@ -307,7 +323,7 @@ in {
               ++ (lib.lists.optional (cfg.worldName != null) "-world \"${cfg.worldName}\"")
               ++ [
                 "-port \"${builtins.toString cfg.port}\""
-                "-password \"${cfg.password}\""
+                "-password ${serverPassword}"
                 "-public ${if cfg.public then "1" else "0"}"
               ]
               ++ (lib.lists.optional cfg.crossplay "-crossplay")
@@ -333,10 +349,18 @@ in {
         assertion = cfg.worldName != "";
         message = "The world name must not be empty.";
       }
+      # {
+      #   assertion = cfg.password != null && cfg.passwordEnvFile != null;
+      #   message = "Please provide only one of password or passwordEnvFile";
+      # }
       {
-        assertion = cfg.password != "";
-        message = "The password must not be empty.";
+        assertion = cfg.passwordEnvFile != null && ! builtins.pathExists cfg.passwordEnvFile;
+        message = "Environment file for the password was provided but does not exist.";
       }
+      # {
+      #   assertion = cfg.password == null && cfg.passwordEnvFile == null;
+      #   message = "Password must be provided at least one way.";
+      # }
     ];
   };
 }
