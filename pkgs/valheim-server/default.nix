@@ -5,7 +5,7 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   name = "valheim-server";
-  version = "0.220.4";
+  version = "0.220.5";
   src = fetchSteam {
     inherit (finalAttrs) name;
     appId = "896660";
