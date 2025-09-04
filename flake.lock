@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1756972340,
-        "narHash": "sha256-gYhvMT2tC0W96jMsHuJ/28VRhVX5WFbd6rcdYn2QtlU=",
+        "lastModified": 1756972885,
+        "narHash": "sha256-c4yViaSs6OJcAc2giQ0MmGaA0SnzTLg4wDJJG/C3QHQ=",
         "owner": "hamburger1984",
         "repo": "steam-fetcher",
-        "rev": "a8d46444f1b6a56b6df54e4097c20486ada4eb22",
+        "rev": "de849606bc2a2aa57f9204fbb22847da5341fe30",
         "type": "github"
       },
       "original": {
