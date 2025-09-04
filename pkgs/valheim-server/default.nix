@@ -12,7 +12,7 @@ stdenv.mkDerivation (finalAttrs: {
     depotId = "896661";
     manifestId = "18007466826975597";
     #hash = "sha256-8UdoLzKiu8CEztqwTHGP5M3RdrrVUTmAwN6Cqt9R+v8=";
-    hash = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    hash = lib.fakeHash;
     branch = "public-test";
     branchPassword = "yesimadebackups";
   };
