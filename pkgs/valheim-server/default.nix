@@ -13,7 +13,7 @@ stdenv.mkDerivation (finalAttrs: {
     manifestId = "18007466826975597";
     hash = "sha256-8UdoLzKiu8CEztqwTHGP5M3RdrrVUTmAwN6Cqt9R+v8=";
     branch = "public-test";
-    branchPassword = "yesimadebackups"
+    branchPassword = "yesimadebackups";
   };
 
   # Skip phases that don't apply to prebuilt binaries.
