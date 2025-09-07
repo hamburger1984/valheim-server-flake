@@ -15,6 +15,7 @@ stdenv.mkDerivation (finalAttrs: {
     hash = lib.fakeHash;
     branch = "public-test";
     branchPassword = "yesimadebackups";
+    debug = true;
   };
 
   # Skip phases that don't apply to prebuilt binaries.
