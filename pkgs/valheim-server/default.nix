@@ -5,16 +5,14 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   name = "valheim-server";
-  version = "0.220.5";
+  version = "0.221.4";
   src = fetchSteam {
     inherit (finalAttrs) name;
     appId = "896660";
     depotId = "896661";
-    manifestId = "18007466826975597";
-    hash = "sha256-8UdoLzKiu8CEztqwTHGP5M3RdrrVUTmAwN6Cqt9R+v8=";
+    manifestId = "3769991913364706381";
+    #hash = "sha256-8UdoLzKiu8CEztqwTHGP5M3RdrrVUTmAwN6Cqt9R+v8=";
     #hash = lib.fakeHash;
-    branch = "public-test";
-    branchPassword = "yesimadebackups";
     debug = true;
   };
 
