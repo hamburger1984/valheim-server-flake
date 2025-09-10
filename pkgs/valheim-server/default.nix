@@ -11,8 +11,8 @@ stdenv.mkDerivation (finalAttrs: {
     appId = "896660";
     depotId = "896661";
     manifestId = "3769991913364706381";
-    #hash = "sha256-8UdoLzKiu8CEztqwTHGP5M3RdrrVUTmAwN6Cqt9R+v8=";
-    hash = lib.fakeHash;
+    hash = "sha256-gh8FhqR2P/B9QiSArBONm+Tr6FYHJOMImwYFErKA0u8=";
+    #hash = lib.fakeHash;
     #debug = true;
   };
 
