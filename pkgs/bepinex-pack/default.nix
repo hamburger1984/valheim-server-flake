@@ -6,7 +6,7 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   name = "BepInExPack-Valheim";
-  version = "5.4.2202";
+  version = "5.4.2333";
 
   # While BepInEx is open-source, there are no publicly available steps for
   # reproducing the BepInEx Valheim pack.
@@ -14,7 +14,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "denikson";
     name = "BepInExPack_Valheim";
     inherit (finalAttrs) version;
-    hash = "sha256-wI66hX6T7SWNsXJ3xO7/S5OqCsbz0pSNcQGBB2Q4e3c=";
+    hash = "sha256-Ru/kKWeX/yLr45wtAuynEZMU4T0UlFMChWsYyqI/AYY=";
   };
 
   # Skip phases that don't apply to prebuilt binaries.
