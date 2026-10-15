@@ -5,13 +5,13 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   name = "valheim-server";
-  version = "1.0.17";
+  version = "1.0.20";
   src = fetchSteam {
     inherit (finalAttrs) name;
     appId = "896660";
     depotId = "896661";
-    manifestId = "3707659388211752971";
-    hash = "sha256-QKDmF5bol0sHnfTr77miIOFYvtLoO8k7Sh9PymrWnqA=";
+    manifestId = "4001404753685205688";
+    hash = "sha256-7GLhPbO1FDgx2HPORAA9sLtrETQCqiY6+a4At5+PUWc=";
   };
 
   # Skip phases that don't apply to prebuilt binaries.
